@@ -13,7 +13,7 @@ const THREAD_COUNT: usize = 10;
 pub fn main_image(
     canvas: &mut Canvas<Vector3<u8>>,
     image_data: &ImageData,
-    pixel_func: impl Fn(&ImageData, &Vector2<u32>) -> Vector3<u8> + Sync + Send + 'static,
+    pixel_func: impl Fn(&ImageData, &Vector2<u32>) -> Vector3<u8> + Send + 'static,
 ) {
     let now = Instant::now();
     for row in 0..canvas.height {
@@ -24,4 +24,46 @@ pub fn main_image(
     }
     let now = now.elapsed();
     println!("It took {:?} to render this image.", now);
+}
+
+pub fn main_image_mt<'a>(
+    canvas: Arc<Mutex<Canvas<Vector3<u8>>>>,
+    image_data: Arc<ImageData>,
+    pixel_func: impl Fn(&'a ImageData, &Vector2<u32>) -> Vector3<u8> + Send + 'a,
+
+) {
+
+    // Calc chunk offset for each thread
+    let offset = image_data.resolution.x as usize / THREAD_COUNT; //col
+
+    // Init the Arc variables
+    // Canvas is already a Arc<Mutex<_>>
+    let image_data = Arc::new(image_data);
+    let offset = Arc::new(offset);
+    
+    // Init the threads vector
+    let mut threads: Vec<thread::JoinHandle<_>> = Vec::new();
+
+    // Create and run the threads
+    for i in 0..THREAD_COUNT {
+        
+        // Clone the Arc variables
+        let canvas = Arc::clone(&canvas);
+        let image_data = Arc::clone(&image_data);
+        let offset = Arc::clone(&offset);
+
+        //Create the threads and run the function on each pixel
+        threads.push(thread::spawn(move || {
+            for col in (i * *offset)..(i * *offset + *offset) {
+                for row in 0..image_data.resolution.y {
+                    println!("Current thread: {} | Current pixel: ({}, {})", i, col, row);
+                }
+            }
+        }));
+    };
+
+    // Join the threads
+    for thread in threads {
+        thread.join().expect("Could not join thread.");
+    }
 }

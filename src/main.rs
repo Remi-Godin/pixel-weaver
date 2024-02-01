@@ -7,17 +7,19 @@ use pixel_weaver::*;
 use rusty_ppm::ppm_writer::write_binary_ppm;
 use simple_canvas::Canvas;
 use std::path::Path;
+use std::sync::{Arc, Mutex};
 
 fn main() {
     let mut image: Canvas<Vector3<u8>> = Canvas::new(1000, 1000, vec3(0, 0, 0));
-    let image_data = ImageData {
+    let image_data: ImageData = ImageData {
         resolution: vec2(image.width as u32, image.height as u32),
-        aspect_ratio: image.width as f64 / image.height as f64,
+        aspect_ratio: (image.width as f64 / image.height as f64),
+
     };
-    main_image(&mut image, &image_data, pixel_func_1);
-    write_binary_ppm(&image, std::path::Path::new("./"), "out_1").unwrap();
-    main_image(&mut image, &image_data, pixel_func_2);
-    write_binary_ppm(&image, std::path::Path::new("./"), "out_2").unwrap();
+    let mut image = Arc::new(Mutex::new(image));
+    let image_data = Arc::new(image_data);
+    main_image_mt(image, image_data, pixel_func_2);
+    //write_binary_ppm(&image, std::path::Path::new("./"), "out_2").unwrap();
 }
 
 fn pixel_func_1(image_data: &ImageData, coord: &Vector2<u32>) -> Vector3<u8> {
