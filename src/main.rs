@@ -3,7 +3,7 @@ mod render;
 
 use crate::render::*;
 use cgmath::{vec2, vec3, vec4, Vector2, Vector3, Vector4};
-use pixel_perfect::*;
+use pixel_weaver::*;
 use rusty_ppm::ppm_writer::write_binary_ppm;
 use simple_canvas::Canvas;
 use std::path::Path;

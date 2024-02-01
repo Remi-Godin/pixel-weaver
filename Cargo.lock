@@ -59,7 +59,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "pixel-perfect"
+name = "pixel-weaver"
 version = "0.1.0"
 dependencies = [
  "cgmath",
@@ -70,7 +70,9 @@ dependencies = [
 
 [[package]]
 name = "rusty-ppm"
-version = "0.3.1"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f61b9e2ee113f935d7827a3d7b17782a0252affa96912799ebe4ce05fab9c5cb"
 dependencies = [
  "cgmath",
  "simple-canvas",
@@ -78,4 +80,6 @@ dependencies = [
 
 [[package]]
 name = "simple-canvas"
-version = "0.1.2"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a92c127211c4fd5cfaf975bed0c37fc01741f444c765a64e565604d1812be095"

@@ -1,16 +1,29 @@
 [package]
-name = "pixel-perfect"
+name = "pixel-weaver"
+authors = ["Remi A. Godin"]
 version = "0.1.0"
 edition = "2021"
+description = "A multi-threaded pixel-by-pixel image renderer"
+repository = "https://github.com/Remi-Godin/pixel-weaver"
+homepage = "https://github.com/Remi-Godin/pixel-weaver"
+license = "MIT"
+readme = "README.md"
+keywords = [
+    "ppm",
+    "renderer",
+    "image",
+    "read",
+    "write"
+]
+categories = [
+    "graphics",
+    "multimedia::images"
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 cgmath = { version = "0.18.0", features = ["swizzle"] }
 num_cpus = "1.16.0"
-
-[dependencies.simple-canvas]
-path="/home/regodin/Programming/Repos/projects/simple-canvas/"
-
-[dependencies.rusty-ppm]
-path="/home/regodin/Programming/Repos/projects/rusty-ppm/"
+rusty-ppm = "0.3.0"
+simple-canvas = "0.1.1"

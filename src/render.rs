@@ -1,6 +1,6 @@
 #![allow(unused)]
 use cgmath::{vec2, vec3, Vector2, Vector3, Vector4};
-use pixel_perfect::ImageData;
+use pixel_weaver::ImageData;
 use rusty_ppm::prelude::*;
 use simple_canvas::*;
 use std::sync::{Arc, Mutex};
