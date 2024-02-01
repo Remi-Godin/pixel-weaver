@@ -27,9 +27,9 @@ pub fn main_image(
 }
 
 pub fn main_image_mt<'a>(
-    canvas: Arc<Mutex<Canvas<Vector3<u8>>>>,
+    canvas: &mut Arc<Mutex<Canvas<Vector3<u8>>>>,
     image_data: Arc<ImageData>,
-    pixel_func: impl Fn(&'a ImageData, &Vector2<u32>) -> Vector3<u8> + Send + 'a,
+    pixel_func: impl Fn(&ImageData, &Vector2<u32>) -> Vector3<u8> + Send + 'static + Clone + Copy,
 
 ) {
 
@@ -54,9 +54,12 @@ pub fn main_image_mt<'a>(
 
         //Create the threads and run the function on each pixel
         threads.push(thread::spawn(move || {
+            let mut canvas = canvas.lock().unwrap();
+            let cloned_func = pixel_func.clone();
             for col in (i * *offset)..(i * *offset + *offset) {
                 for row in 0..image_data.resolution.y {
-                    println!("Current thread: {} | Current pixel: ({}, {})", i, col, row);
+                    let pixel = pixel_func(&image_data, &vec2(col as u32, row as u32));
+                    *canvas.get_mut(row as usize, col).unwrap() = pixel;
                 }
             }
         }));

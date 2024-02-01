@@ -18,8 +18,9 @@ fn main() {
     };
     let mut image = Arc::new(Mutex::new(image));
     let image_data = Arc::new(image_data);
-    main_image_mt(image, image_data, pixel_func_2);
-    //write_binary_ppm(&image, std::path::Path::new("./"), "out_2").unwrap();
+    main_image_mt(&mut image, image_data, pixel_func_2);
+    let image = image.lock().unwrap();
+    write_binary_ppm(&image, std::path::Path::new("./"), "out_3").unwrap();
 }
 
 fn pixel_func_1(image_data: &ImageData, coord: &Vector2<u32>) -> Vector3<u8> {
