@@ -1,0 +1,16 @@
+[package]
+name = "pixel-perfect"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cgmath = { version = "0.18.0", features = ["swizzle"] }
+num_cpus = "1.16.0"
+
+[dependencies.simple-canvas]
+path="/home/regodin/Programming/Repos/projects/simple-canvas/"
+
+[dependencies.rusty-ppm]
+path="/home/regodin/Programming/Repos/projects/rusty-ppm/"
