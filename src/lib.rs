@@ -1,12 +1,17 @@
 #![allow(unused)]
 use cgmath::{vec2, vec3, Vector2, Vector3};
+use std::time::Duration;
 
-pub const THREAD_COUNT: usize = 8;
+pub const THREAD_COUNT: usize = 10;
+pub const WIDTH: usize = 500;
+pub const HEIGHT: usize = 500;
+pub const SIM_TIME: Duration = Duration::new(0, 1);
 
 #[derive(Clone)]
 pub struct ImageData {
     pub resolution: Vector2<u32>,
     pub aspect_ratio: f64,
+    pub size: u64
 }
 
 pub fn uv(image_data: &ImageData, coord: &Vector2<u32>) -> Vector2<f64> {
