@@ -1,6 +1,8 @@
 #![allow(unused)]
 use cgmath::{vec2, vec3, Vector2, Vector3};
 
+pub const THREAD_COUNT: usize = 8;
+
 #[derive(Clone)]
 pub struct ImageData {
     pub resolution: Vector2<u32>,
