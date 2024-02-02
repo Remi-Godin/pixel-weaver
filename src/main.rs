@@ -27,14 +27,14 @@ fn main() {
 
     // Produce the image 
     let st_now = Instant::now();
-    main_image(&mut image_st, &image_data, pixel_func_sim);
+    main_image(&mut image_st, &image_data, pixel_func_1);
     let st_now = st_now.elapsed();
     //write_binary_ppm(&image_st, path, "st_img");
 
     // Produce the image
     let mt_now = Instant::now();
     let image_data_arc = Arc::new(image_data.clone());
-    main_image_mt(&mut image_mt, image_data_arc, pixel_func_sim);
+    main_image_mt(&mut image_mt, image_data_arc, pixel_func_1);
     let mt_now = mt_now.elapsed();
 
 
@@ -45,7 +45,9 @@ fn main() {
     println!("Image size");
     println!("Wdith:  {} pixels", image_data.clone().resolution.x);
     println!("Height: {} pixels", image_data.clone().resolution.y);
+    println!("Total pixels: {} pixels", image_data.size);
     println!("Simulated workload time per pixel: {SIM_TIME:?}");
+    println!("Total simulated workload: {:?}", SIM_TIME * image_data.size as u32);
     println!("------------------");
     println!("Single thread:\t {:?}", st_now);
     println!("Multi thread({THREAD_COUNT}): {:?}", mt_now);
