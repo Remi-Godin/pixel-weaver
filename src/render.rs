@@ -1,4 +1,3 @@
-#![allow(unused)]
 use cgmath::{vec2, vec3, Vector2, Vector3, Vector4};
 use pixel_weaver::*;
 use rusty_ppm::prelude::*;
@@ -23,7 +22,7 @@ pub fn main_image(
 }
 
 // Multi threaded version
-pub fn main_image_mt<'a>(
+pub fn main_image_mt(
     canvas: &mut Arc<Mutex<Canvas<Vector3<u8>>>>,
     image_data: Arc<ImageData>,
     pixel_func: impl Fn(&ImageData, &Vector2<u32>) -> Vector3<u8> + Send + 'static + Clone + Copy,
@@ -57,7 +56,6 @@ pub fn main_image_mt<'a>(
                 curr_offset += diff;
             }
             let mut canvas = canvas.lock().unwrap();
-            let cloned_func = pixel_func;
             for col in (i * *offset)..(i * *offset + curr_offset) {
                 for row in 0..image_data.resolution.y {
                     // Run the pixel function
