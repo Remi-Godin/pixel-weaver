@@ -54,13 +54,13 @@ fn main() {
 }
 
 fn pixel_func_1(image_data: &ImageData, coord: &Vector2<u32>) -> Vector3<u8> {
-    let uv = uv(&image_data, &coord);
+    let uv = uv(image_data, coord);
     std::thread::sleep(std::time::Duration::new(0, 500));
     vec3(normal_to_rgb(uv.x), normal_to_rgb(uv.y), 0)
 }
 
 fn pixel_func_2(image_data: &ImageData, coord: &Vector2<u32>) -> Vector3<u8> {
-    let uv = uv(&image_data, &coord);
+    let uv = uv(image_data, coord);
     let mut len = length(uv);
     len -= 0.5;
     let col = vec3(len, len, len);

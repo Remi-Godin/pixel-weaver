@@ -17,7 +17,7 @@ pub fn main_image(
     for row in 0..canvas.height {
         for col in 0..canvas.width {
             *canvas.get_mut(row, col).expect("Index out of bounds") =
-                pixel_func(&image_data, &vec2(row as u32, col as u32));
+                pixel_func(image_data, &vec2(row as u32, col as u32));
         }
     }
 }
@@ -45,7 +45,7 @@ pub fn main_image_mt<'a>(
     for i in 0..THREAD_COUNT {
         
         // Clone the Arc variables
-        let canvas = Arc::clone(&canvas);
+        let canvas = Arc::clone(canvas);
         let image_data = Arc::clone(&image_data);
         let offset = Arc::clone(&offset);
 
@@ -57,12 +57,12 @@ pub fn main_image_mt<'a>(
                 curr_offset += diff;
             }
             let mut canvas = canvas.lock().unwrap();
-            let cloned_func = pixel_func.clone();
+            let cloned_func = pixel_func;
             for col in (i * *offset)..(i * *offset + curr_offset) {
                 for row in 0..image_data.resolution.y {
                     // Run the pixel function
                     //println!("Thread ({i}) working on pixel ({row}, {col})");
-                    let pixel = pixel_func(&image_data, &vec2(row as u32, col as u32));
+                    let pixel = pixel_func(&image_data, &vec2(row, col as u32));
                     *canvas.get_mut(row as usize, col).unwrap() = pixel;
                 }
             }
