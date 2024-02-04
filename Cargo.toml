@@ -1,7 +1,7 @@
 [package]
 name = "pixel-weaver"
 authors = ["Remi A. Godin"]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A multi-threaded pixel-by-pixel image renderer"
 repository = "https://github.com/Remi-Godin/pixel-weaver"
