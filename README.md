@@ -9,6 +9,7 @@ The crate currently only supports 8 bit color space and was mostly designed to b
 Required:
 - [`cgmath`](https://crates.io/crates/cgmath) 
 - [`simple-canvas`](https://crates.io/crates/simple-canvas) 
+
 Optional:
 - [`rusty-ppm`](https://crates.io/crates/rusty-ppm)
 
