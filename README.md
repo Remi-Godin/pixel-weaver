@@ -2,7 +2,7 @@
 A CPU multithreaded pixel-by-pixel image renderer.
 
 ## Foreword
-The crate currently only supports 8 bit color space and was mostly designed to be used in conjunction with the [`simple-canvas`](https://crates.io/crates/simple-canvas) crate and the [`rusty-ppm`](https://crates.io/crates/rusty-ppm) crate, to create `.ppm` format images.
+The crate currently only supports 24 bit color space and was mostly designed to be used in conjunction with the [`simple-canvas`](https://crates.io/crates/simple-canvas) crate and the [`rusty-ppm`](https://crates.io/crates/rusty-ppm) crate, to create `.ppm` format images.
 
 ## How to use
 #### Dependencies
@@ -52,4 +52,4 @@ Multi thread(10): 1.922870ms
 ```
 
 #### Conclusion
-It seems multithreaded consistently runs better than single threaded, but this might vary by the content of the pixel function, or by the machine running the code. But for more computationally heavy functions, multuthreaded will vastly improve performances.
+It seems multithreaded consistently runs better than single threaded, but this might vary by the content of the pixel function, or by the machine running the code. But for more computationally heavy functions, multithreaded will vastly improve performances.
