@@ -24,6 +24,5 @@ categories = [
 
 [dependencies]
 cgmath = { version = "0.18.0", features = ["swizzle"] }
-num_cpus = "1.16.0"
 rusty-ppm = "0.3.0"
 simple-canvas = "0.1.1"

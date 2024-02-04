@@ -1,5 +1,5 @@
 use cgmath::{vec2, Vector2, Vector3};
-use pixel_weaver::*;
+use crate::ImageData;
 use simple_canvas::*;
 use std::sync::{Arc, Mutex};
 use std::thread;
@@ -30,8 +30,9 @@ pub fn main_image(
 /// Multi threaded pixel-by-pixel image writer.
 ///
 /// ## Parameters
-/// - `canvas`:     The Canvas struct to write the image to. 
-/// - `pixel_func`: The function that will run on each pixel of the image.
+/// - `canvas`:       The Canvas struct to write the image to. 
+/// - `pixel_func`:   The function that will run on each pixel of the image.
+/// - `thread_count`: The number of threads to use to render the image
 pub fn main_image_mt(
     canvas: &mut Canvas<Vector3<u8>>,
     pixel_func: impl Fn(&ImageData, &Vector2<u32>) -> Vector3<u8> + Send + 'static + Copy,
