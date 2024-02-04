@@ -2,7 +2,7 @@
 A CPU multithreaded pixel-by-pixel image renderer.
 
 ## How to use
-To use this crate, you will also need to import the `simple-canvas` crate, since `pixel-weaver` uses the `Canvas` struct to create the image. You can also import the `rusty-ppm` crate to encode the canvas into a `.ppm` image, which also relies on `simple-canvas`.
+To use this crate, you will also need to import the [`simple-canvas`](https://crates.io/crates/simple-canvas) crate, since `pixel-weaver` uses the `Canvas` struct to create the image. You can also import the [`rusty-ppm`](https://crates.io/crates/rusty-ppm) crate to encode the canvas into a `.ppm` image, which also relies on [`simple-canvas`](https://crates.io/crates/simple-canvas).
 
 The idea behind this crate is to use it a bit like you would code a shader for a GPU. You create a function that will act upon every pixel, using only the pixel coordinate or UV to determine the final pixel color.
 
