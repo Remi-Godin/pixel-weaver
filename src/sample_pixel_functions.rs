@@ -17,20 +17,17 @@ pub fn faded_circle(image_data: &ImageData, coord: &Vector2<u32>) -> Vector3<u8>
 }
 
 /// This function renders 3 spheres on top of a place
-pub fn spheres(image_data: &ImageData, pixel_coord: &Vector2<u32>) -> Vector3<u8> {
-    let uv = uv(&image_data, pixel_coord);
+pub fn spheres(image_data: &ImageData, pixel_cooray_direction: &Vector2<u32>) -> Vector3<u8> {
+    let uv = uv(&image_data, pixel_cooray_direction);
 
-    let ro = vec3(0., 0., -3.); // Ray Origin
-    let rd = vec3(uv.x, uv.y, 1.).normalize(); // Ray Direction
+    let ray_origin = vec3(0., 0., -3.);
+    let ray_direction = vec3(uv.x, uv.y, 1.).normalize();
     let mut dist = 0.; 
 
     for _ in 0..80 {
-        let p = ro + rd * dist;
-
+        let p = ray_origin + ray_direction * dist;
         let d: f64 = dist_to_surf(p);
-
         dist += d;
-
         if d < 0.001 {break;};
         if dist > 1000.0 {break;};
     }
