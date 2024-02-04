@@ -29,6 +29,8 @@ RAM:  8GB
 GPU1: Intel CoffeLake-H GT2 [UHD Graphics 630]
 GPU2: NVIDIA Quadro T1000 Mobile
 ```
+---
+
 ### Benchmark render image specs 
 ```
 Width: 1_000 pixels
@@ -36,11 +38,13 @@ Height: 1_000 pixels
 Total: 1_000_000 pixels
 ```
 #### 3D Spheres benchmark results:
+![Sphere](https://github.com/Remi-Godin/pixel-weaver/assets/129818497/d501f894-a9a5-43a9-8a16-57e39b3187d6)
 ```
 Single thread:	  380.341435ms
 Multi thread(10):  85.168631ms
 ```
 #### 2D UV Square benchmark results:
+![UVSquare](https://github.com/Remi-Godin/pixel-weaver/assets/129818497/ee194d29-f422-4303-a7d8-7726dbd8ef19)
 ```
 Single thread:	  2.473724ms
 Multi thread(10): 1.922870ms
