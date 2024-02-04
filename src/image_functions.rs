@@ -21,7 +21,7 @@ pub fn length(coord: Vector2<f64>) -> f64 {
     (coord.x.powi(2) + coord.y.powi(2)).sqrt()
 }
 
-/// Takes a normalized `Vector3<f64>` and returns a conversion to `Vector3<u8>` in 8 bit color space
+/// Takes a normalized `Vector3<f64>` and returns a conversion to `Vector3<u8>` in 24 bit color space
 pub fn f64_vector3_to_u8(vector: Vector3<f64>) -> Vector3<u8> {
     vec3(
         (vector.x * 255.).clamp(0.0, 255.0) as u8,
@@ -30,7 +30,7 @@ pub fn f64_vector3_to_u8(vector: Vector3<f64>) -> Vector3<u8> {
     )
 }
 
-/// Takes a normalized value and returns a conversion to 8 bit color space
+/// Takes a normalized value and returns a conversion to a single 8 bit color channel
 pub fn normal_to_rgb(val: f64) -> u8 {
     (val * 255.0).clamp(0., 255.) as u8
 }
